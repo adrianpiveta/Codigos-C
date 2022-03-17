@@ -1,0 +1,55 @@
+#include <stdio.h>
+int main (){
+	float salario=1000;
+	int ano;
+	salario = salario * 1.015;
+	for (ano=2017; ano<2022; ano++){
+		salario += salario*0.02;
+	}
+	printf("Salario: %.2f", salario);
+}
+
+//2
+int main(){
+	int N, count, entrada, fatorial=1, count2;
+	printf("Digite quantos numeros devem ser lidos: ");
+	scanf("%d%*c", &N);
+	for(count=1; count<N+1; count++){
+		printf("Digite o %d mo numero \n", count);
+		scanf("%d%*c",&entrada);
+		for(count2=1;entrada>=count2; count2++){
+			fatorial=fatorial*count2;
+		}
+		printf("fatorial de %d = %d \n",entrada, fatorial);
+		fatorial=1;
+	}
+}
+
+//3
+int main(){
+	float nota1, nota2, mediaClasse, media;
+	int exame=0, aprovados=0, reprovados=0;
+	for(int i=1; i<7; i++){
+			printf("Digite a 1 a nota do %d o aluno : ", i);
+			scanf("%f%*c", &nota1);
+			printf("Digite a 2 a nota do %d o aluno : ", i);
+			scanf("%f%*c", &nota2);
+			media = (nota1+nota2)/2;
+			printf(" Media do %do aluno %.2f",i, media);
+			if(media<=3){
+				printf("\nreprovado\n");
+			reprovados++;
+			}else{
+				if(media>3 and media<7){
+					 exame++;
+					 printf("exame\n");
+				}
+			else{
+				aprovados++;
+				printf("aprovado\n");
+			}
+			mediaClasse+=media;
+		}
+		}
+	printf(" %d aprovado(s) \n %d em exame \n %d reprovado(s) \n media da classe: %.2f", aprovados, exame, reprovados, (mediaClasse/6));
+}
