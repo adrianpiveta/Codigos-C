@@ -1,0 +1,70 @@
+// exercicio 1
+int main(){
+	int inteiros[2][4];
+	int entre1020=0, pares=0, contpares=0;
+	float mediaPares;
+
+	for(int linha=0; linha<2; linha++){
+		for(int coluna=0; coluna<4; coluna++){
+			printf("Digite o valor posicao [%d][%d]",linha+1, coluna+1);
+			scanf("%d%*c", &inteiros[linha][coluna]);
+		}
+	}
+	for(int linha=0; linha<2; linha++){
+		for(int coluna=0; coluna<4; coluna++){
+			if(inteiros[linha][coluna]>=10 && inteiros[linha][coluna]<=20)
+				entre1020++;
+			if(inteiros[linha][coluna]%2==0){
+				pares+=inteiros[linha][coluna];
+				contpares++;
+			}
+		}
+	}
+	mediaPares = pares/contpares;
+	if(entre1020>0)
+		printf("Ha %d elementos entre 10 e 20 \n", entre1020);
+	else
+		printf("Nao ha elementos entre 20 e 20");
+
+	if(contpares>0)
+		printf("A media dos pares e %.2f ", mediaPares);
+	else
+		printf("Não há elementos pares \n");
+}
+
+//exercicio 2
+# include <stdio.h>
+
+int main(){
+	int valores[5][5],
+		somaL4=0, somaC2=0, somaDP=0, somaDS=0, somaM=0;
+
+	int quantidadeAlunos[3]={0,0,0};
+	for (int linha = 0; linha<5; linha++){
+		printf("_______________________________________________\n");
+		for (int coluna = 0; coluna<5; coluna++){
+			printf("Digite o valor da posicao [%d] [%d] =>  ", linha+1, coluna+1);
+			scanf("%d%*c", &valores[linha][coluna]);
+		}
+	}
+
+	for (int linha = 0; linha<5; linha++){
+		for (int coluna = 0; coluna<5; coluna++){
+			if(linha==3)//aqui se soma elementos da linha 4 (indice 3)
+				somaL4+=valores[linha][coluna];
+			if(coluna==1)//soma-se elementos da coluna 2
+				somaC2+=valores[linha][coluna];
+			if(linha==coluna)//soma diagonal principal
+				somaDP+=valores[linha][coluna];
+			if(coluna+linha == linha+1)//soma diagonal secundaria
+				somaDS+=valores[linha][coluna];
+			somaM+=valores[linha][coluna];
+		}
+	}
+
+	printf("Soma Linha 4 = %d \n", somaL4);
+	printf("soma Coluna 2 = %d \n", somaC2);
+	printf("soma Diagonal Principal = %d \n", somaDP);
+	printf("soma Diagonal Secundaria = %d \n", somaDS);
+	printf("Soma de todos elementos da matriz = %d", somaM);
+}

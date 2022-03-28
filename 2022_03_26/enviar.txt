@@ -1,0 +1,144 @@
+// exec 1
+int main(){
+	//se digita double com virgula, esta em portugues
+	setlocale (LC_ALL, "portuguese");
+	float numero[3];
+	int aux=0, contOrdem=0;
+	for(int cont=0; cont<3; cont++){
+		printf("Digite o %dº numero: ",cont+1);
+		scanf("%f%*c", &numero[cont]);
+	}
+	aux=numero[0];
+	while(contOrdem<3){
+		for(int cont=0; cont<2; cont++){
+			if(numero[cont]>numero[cont+1]){
+				aux=numero[cont];
+				numero[cont]=numero[cont+1];
+				numero[cont+1]=aux;
+				contOrdem++;
+			}else{
+				contOrdem++;
+			}
+		}
+	}
+	for(int cont=0; cont<3; cont++)
+		printf("Numero na posição %d == %.2f \n", cont+1, numero[cont]);
+
+
+}
+
+//exec 2
+
+int main(){
+	setlocale (LC_ALL, "portuguese");
+	/*
+	[time][jogador][caracteristica do jogador]
+	em caracteristica do jogador, temos idade[0]  peso[1] altura[2]
+	*/
+	printf("-----------------------------------\nPrograma de calculo de times \n");
+	printf("Respeite as unidades de medida, valores podem ter entrada em real, com a separação das casas decimais dadas por vírgulas \n");
+	printf("Exemplo: 00,00 \n");
+	printf("-----------------------------------	\nFaça um bom uso ;) \n");
+	float times [5][11][3], mediaIdade[5], somaIdades, mediaAltura, gordinhos=0;
+	int menorIdade=0;
+	for(int time=0; time<5; time++){
+		printf("---------------------------------\n Digite dados referentes ao %dº time: \n", time+1);
+		for(int jogador=0; jogador<11; jogador++){
+			printf("----------------------------------------\n Jogador %d \n", jogador+1);
+			printf(" Digite o idade (anos)=>  ");
+			scanf("%f%*c", &times [time][jogador][0]);
+			printf(" Digite o peso (KG))=>  ");
+			scanf("%f%*c", &times [time][jogador][1]);
+			printf(" Digite a altura (metros)=>  ");
+			scanf("%f%*c", &times [time][jogador][2]);
+		}
+	}
+
+	for(int time=0; time<5; time++){
+		somaIdades=0;
+		for(int jogador=0; jogador<11; jogador++){
+			if(times[time][jogador][0] <18)
+					menorIdade++;
+			if(times[time][jogador][1] >80.0)
+				gordinhos++;
+			somaIdades+=times[time][jogador][0];
+			mediaAltura+=times[time][jogador][2];
+		}
+		mediaIdade[time]=(somaIdades/11);
+	}
+
+	printf("\n----------------------------------------\n Quantidade de jogadores menores de 18: %d", menorIdade);
+	for(int medias=0; medias<5; medias++)
+		printf("\n--------------------------------------\n A média de idade do time %d é %.2f",medias, mediaIdade[medias]);
+	printf("\n--------------------------------------\n A média de altura de todos jogadores é %.2f", mediaAltura/(55));
+	printf("\n--------------------------------------\n A procentagem de jogadores com mais de 80kg é %.2f %", (gordinhos/(5*11)));
+}
+
+//exec 3
+
+	int main(){
+		setlocale (LC_ALL, "portuguese");
+		float entrada[3], auxiliar;
+		int contador=0;
+		for(int numero=0; numero<3; numero++){
+			printf("\nDigite o %dº número: =>  ", numero+1);
+			scanf("%f%*c",&entrada[numero]);
+		}
+		for(int aux=0; aux<3; aux++){
+			for(int aux1=0; aux1<2; aux1++){
+				if(entrada[aux1]<entrada[aux1+1]){
+					auxiliar=entrada[aux1];
+					entrada[aux1]=entrada[aux1+1];
+					entrada[aux1+1]=auxiliar;
+				}
+			}
+		}
+
+		for(int posicao=0; posicao<3; posicao++){
+			printf("Posição %d = %.2f \n",posicao, entrada[posicao]);
+		}
+	}
+
+//exec 4
+
+int main(){
+  setlocale (LC_ALL, "portuguese");
+  int matriz[10][20];
+  int somaLinha[10], somap;
+
+  for(int a = 0; a<10; a++){
+    somap=0;
+    for(int b=0; b<20; b++){
+      printf("\n Digite o elemento posicao [%d] [%d] =>  ", a+1, b+1);
+      scanf("%d%*c",&matriz[a][b]);
+    }
+  }
+
+  for(int a = 0; a<10; a++){
+    somap=0;
+    for(int b=0; b<20; b++){
+      somap+=matriz[a][b];
+    }
+    somaLinha[a]=somap;
+  }
+  for(int a = 0; a<10; a++){
+    for(int b=0; b<20; b++){
+      matriz[a][b]=matriz[a][b]*somaLinha[a];
+    }
+  }
+
+  printf("--------------------------------\n Matriz Resultantes \n {");
+  for(int a = 0; a<10; a++){
+    printf("{");
+    for(int b=0; b<20; b++){
+      if(b!=19)
+        printf(" %d ,",matriz[a][b]);
+      else
+        printf(" %d ",matriz[a][b]);
+    }
+    if(a!=9)
+      printf("}, \n");
+    else
+      printf("} \n");
+  }
+}
